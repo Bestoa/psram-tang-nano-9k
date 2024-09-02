@@ -27,10 +27,10 @@ module PsramController #(
 
     // HyperRAM physical interface. Gowin interface is for 2 dies. 
     // We currently only use the first die (4MB).
-    output [1:0] O_psram_ck,
-    inout [1:0] IO_psram_rwds,
-    inout [15:0] IO_psram_dq,
-    output [1:0] O_psram_cs_n
+    output O_psram_ck,
+    inout IO_psram_rwds,
+    inout [7:0] IO_psram_dq,
+    output O_psram_cs_n
 );
 
 reg [2:0] state;
@@ -150,7 +150,7 @@ end
 // Generate cfg_now pulse after 150us delay
 //
 localparam INIT_TIME = FREQ / 1000 * 160 / 1000;
-reg  [$clog2(INIT_TIME+1):0]   rst_cnt;
+reg  [14:0]   rst_cnt;
 reg rst_done, rst_done_p1, cfg_busy;
   
 always @(posedge clk) begin
@@ -179,11 +179,11 @@ wire dq_oen_tbuf[7:0];
 ODDR oddr_cs_n(
     .CLK(clk), .D0(ram_cs_n), .D1(ram_cs_n), .Q0(cs_n_tbuf)
 );
-assign O_psram_cs_n[0] = cs_n_tbuf;
+assign O_psram_cs_n = cs_n_tbuf;
 ODDR oddr_rwds(
     .CLK(clk), .D0(rwds_out_ris), .D1(rwds_out_fal), .TX(rwds_oen), .Q0(rwds_tbuf), .Q1(rwds_oen_tbuf)
 );
-assign IO_psram_rwds[0] = rwds_oen_tbuf ? 1'bz : rwds_tbuf;
+assign IO_psram_rwds = rwds_oen_tbuf ? 1'bz : rwds_tbuf;
 
 genvar i1;
 generate
@@ -198,12 +198,12 @@ endgenerate
 ODDR oddr_ck(
     .CLK(clk_p), .D0(ck_e_p), .D1(1'b0), .Q0(ck_tbuf)
 );
-assign O_psram_ck[0] = ck_tbuf;
+assign O_psram_ck = ck_tbuf;
 
 
 // Tristate DDR input
 IDDR iddr_rwds(
-    .CLK(clk), .D(IO_psram_rwds[0]), .Q0(rwds_in_ris), .Q1(rwds_in_fal)
+    .CLK(clk), .D(IO_psram_rwds), .Q0(rwds_in_ris), .Q1(rwds_in_fal)
 );
 genvar i2;
 generate

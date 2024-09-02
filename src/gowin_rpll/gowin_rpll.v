@@ -42,9 +42,9 @@ rPLL rpll_inst (
 defparam rpll_inst.FCLKIN = "27";
 defparam rpll_inst.DYN_IDIV_SEL = "false";
 // 81 Mhz, LATENCY=3
-defparam rpll_inst.FBDIV_SEL = 2;
-defparam rpll_inst.IDIV_SEL = 0;       
-defparam rpll_inst.ODIV_SEL = 8;
+//defparam rpll_inst.FBDIV_SEL = 2;
+//defparam rpll_inst.IDIV_SEL = 0;       
+//defparam rpll_inst.ODIV_SEL = 8;
 
 // 102.6 Mhz, LATENCY=4
 //defparam rpll_inst.FBDIV_SEL = 18;
@@ -53,9 +53,9 @@ defparam rpll_inst.ODIV_SEL = 8;
 
 // Other possible clock speed:
 // 51 Mhz
-//defparam rpll_inst.IDIV_SEL = 8;
-//defparam rpll_inst.FBDIV_SEL = 16;
-//defparam rpll_inst.ODIV_SEL = 8;
+defparam rpll_inst.IDIV_SEL = 8;
+defparam rpll_inst.FBDIV_SEL = 16;
+defparam rpll_inst.ODIV_SEL = 8;
 
 // 74.25 Mhz, 720p pixel clock
 //defparam rpll_inst.IDIV_SEL = 3;
