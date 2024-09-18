@@ -57,6 +57,11 @@ defparam rpll_inst.IDIV_SEL = 8;
 defparam rpll_inst.FBDIV_SEL = 16;
 defparam rpll_inst.ODIV_SEL = 8;
 
+// 40.5 Mhz
+defparam rpll_inst.IDIV_SEL = 7;
+defparam rpll_inst.FBDIV_SEL = 11;
+defparam rpll_inst.ODIV_SEL = 16;
+
 // 74.25 Mhz, 720p pixel clock
 //defparam rpll_inst.IDIV_SEL = 3;
 //defparam rpll_inst.FBDIV_SEL = 10;

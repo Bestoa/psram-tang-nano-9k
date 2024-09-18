@@ -19,7 +19,7 @@ module memory_test (
 localparam [23:0] BYTES = 8*1024*1024;    // Test write/read this many bytes
 
 // Change PLL and here to choose another speed.
-localparam FREQ = 51_000_000;
+localparam FREQ = 40_500_000;
 localparam LATENCY = 3;
 //localparam FREQ = 102_600_000;
 //localparam LATENCY = 4;
