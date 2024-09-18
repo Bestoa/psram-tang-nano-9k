@@ -126,11 +126,11 @@ always @(posedge clk) begin
                         local_addr2 <= addr[22:1] + 1;
                     end
                 end
+                ready <= 1;
             end
             WRITE_W : begin
                 if (write == 2'b0 && busy == 2'b0) begin
                     state <= IDLE;
-                    ready <= 1;
                 end else begin
                     state <= WRITE_W;
                 end
