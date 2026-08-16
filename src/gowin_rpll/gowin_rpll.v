@@ -53,9 +53,9 @@ defparam rpll_inst.DYN_IDIV_SEL = "false";
 
 // Other possible clock speed:
 // 51 Mhz
-defparam rpll_inst.IDIV_SEL = 8;
-defparam rpll_inst.FBDIV_SEL = 16;
-defparam rpll_inst.ODIV_SEL = 8;
+//defparam rpll_inst.IDIV_SEL = 8;
+//defparam rpll_inst.FBDIV_SEL = 16;
+//defparam rpll_inst.ODIV_SEL = 8;
 
 // 40.5 Mhz
 defparam rpll_inst.IDIV_SEL = 7;

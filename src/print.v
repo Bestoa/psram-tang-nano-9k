@@ -61,10 +61,19 @@ always@(posedge print_clk)begin
                 if(print_buffer[
                     print_buffer_pointer*8+7 -: 8
                 ]!=8'd0)begin
-                    print_seq[seq_tail]<=print_buffer[
+                    if(print_buffer[
                         print_buffer_pointer*8+7 -: 8
-                    ];
-                    seq_tail<=seq_tail+8'd1;
+                    ]==8'h0A)begin
+                        // expand LF to CR+LF (Gowin string literals do not support \r)
+                        print_seq[seq_tail]<=8'h0D;
+                        print_seq[seq_tail+8'd1]<=8'h0A;
+                        seq_tail<=seq_tail+8'd2;
+                    end else begin
+                        print_seq[seq_tail]<=print_buffer[
+                            print_buffer_pointer*8+7 -: 8
+                        ];
+                        seq_tail<=seq_tail+8'd1;
+                    end
                 end else begin
                     print_state<=PRINT_IDLE_STATE;
                 end
